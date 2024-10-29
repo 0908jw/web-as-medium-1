@@ -1,0 +1,115 @@
+
+body {
+  padding: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.letter-2 {
+  position: relative;
+  flex: 1;
+  min-width: 200px;
+  max-width: 300px;
+  width: 400px;
+  height: 400px;
+}
+
+.square {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: #bf7be4;
+  border-color: black;
+  border-style: dashed;
+  transition: border-radius 0.5s ease, background-color 0.5s ease;
+  animation: floatAround 40s infinite ease-in-out;
+}
+
+.square:hover {
+  background-color: #ff6347;
+  border-radius: 50%;
+  animation-play-state: paused;
+}
+
+@keyframes floatAround {
+  0% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(300px, -200px);
+  }
+  20% {
+    transform: translate(-400px, 300px);
+  }
+  30% {
+    transform: translate(500px, -100px);
+  }
+  40% {
+    transform: translate(-200px, -500px);
+  }
+  50% {
+    transform: translate(300px, 400px);
+  }
+  60% {
+    transform: translate(-500px, 200px);
+  }
+  70% {
+    transform: translate(200px, -400px);
+  }
+  80% {
+    transform: translate(-300px, 500px);
+  }
+  90% {
+    transform: translate(400px, -300px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.square1{
+  top: 0;
+  left: 0;
+}
+
+.square2{
+  top: 50px;
+  left: 20px;
+}
+
+.square3{
+  top: 100px;
+  left: 20px;
+}
+
+.square4{
+  top: 150px;
+  left: 10px;
+}
+
+.square5{
+  top: 200px;
+  left: -10px;
+}
+
+.square6{
+  top: 50px;
+  left: 70px;
+}
+
+.square7{
+  top: 30px;
+  left: 120px;
+}
+
+.square8{
+  top: 60px;
+  left: 150px;
+}
+
+.square9{
+  top: 230px;
+  left: -30px;
+}

@@ -1,0 +1,213 @@
+*{
+    box-sizing: border-box;
+    padding: 0rem;
+    margin: 0.3rem;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.5;
+}
+
+.marquee {
+    display: flex;
+    overflow: hidden;
+    height: 12vh;
+    gap: 6.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    box-shadow: 0.4rem 0.4rem 1rem 0rem rgba(133, 133, 133, 0.25);
+    position: sticky;
+    top:0;
+    left:0;
+    right:0;
+    z-index: 1000;
+    background-color: #ffffff;
+  }
+  
+  .marquee__group {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    min-width: 100%;
+    animation: scroll 15s linear infinite reverse;
+  }
+  
+  .marquee__group span {
+    color: rgb(0, 0, 0);
+    font-family: "amador", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  }
+  
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - 2rem));
+    }
+  }
+  
+  @media only screen and (min-width: 360px) {
+      .marquee__group span {
+          font-size: 5vw;
+      }
+    }
+
+    .marquee1 {
+        display: flex;
+        overflow: hidden;
+        height: 7vh;
+        gap: 9rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        box-shadow: 0.4rem 0.4rem 1rem 0rem rgba(133, 133, 133, 0.25);
+        position: fixed;
+        bottom:0.7rem;
+        left:0;
+        right:0;
+        z-index: 1000;
+        background-color: #ffffff;
+      }
+      
+      .marquee1__group {
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+        justify-content: space-between;
+        gap: 2rem;
+        min-width: 100%;
+        animation: scroll 15s linear infinite reverse;
+      }
+      
+      .marquee1__group span {
+        color: rgb(0, 0, 0);
+        font-family: "elizeth-condensed", serif;
+      font-weight: 400;
+      font-style: normal;
+      }
+      
+      /* @keyframes scroll {
+        from {
+            transform: translateX(calc(-100% - 2rem));
+        }
+        to {
+            transform: translateX(0);
+        }
+      } */
+
+      @media only screen and (min-width: 360px) {
+          .marquee1__group span {
+              font-size: 2vw;
+          }
+        }
+
+    .popup-container {
+        position: relative; /* Positioned relative for child absolute positioning */
+        width: 100%;
+        height: 100vh; /* Full height to cover the viewport */
+    }
+    
+    .popup {
+        position: absolute; /* Absolute positioning to place shapes randomly */
+        width: 100px;      /* Width of the rectangular shape */
+        height: 50px;      /* Height of the rectangular shape */
+        background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+        border: 2px solid rgba(0, 0, 0, 0.5); /* Optional border */
+        transition: all 0.5s ease; /* Smooth transition for appearance */
+        filter: blur(5px);  /* Initial blur effect */
+    }
+
+h2 {
+    font-family: "elizeth-condensed", serif;
+font-weight: 500;
+font-style: normal;
+font-size: 2rem;
+line-height: 1.3;
+}
+
+
+.articles-container {
+    display: grid;
+    margin-bottom: 3.5rem;
+}
+
+.article {
+    width: 24%;
+    padding: 10px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: left; 
+    box-sizing: border-box;
+    padding-bottom: 1rem;
+}
+
+.article img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    align-self: center;
+    margin:5px;
+    padding-bottom: 0.2rem;
+    filter: blur(10px);
+    transition: filter 0.5s ease;
+}
+
+.article:hover img {
+filter: none;
+}
+
+.article p {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #333;
+    text-align: left;
+    font-family: "dico-slab", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.read-more-btn {
+    display: inline-block;
+    padding: 7px 11px;
+    color: #333;
+    background-color: #ffffff;
+    border:2px solid #333;
+    text-decoration: none;
+    border-radius: 7px;
+    font-size: 0.9rem;
+    text-align: center;
+    width: fit-content;
+    align-self: center;
+    margin-top: 1rem;
+}
+
+.article:nth-child(1) {
+    grid-row-start: auto;
+}
+
+.article:nth-child(2) {
+    grid-row-start: auto;
+}
+
+.article:nth-child(3) {
+    grid-row-start: auto;
+
+}
+
+.article:nth-child(4) {
+    grid-row-start: auto;
+}
+
+.article:nth-child(5) {
+    grid-row-start: auto;
+}
+
+.article:nth-child(6) {
+    grid-row-start: auto;
+}
