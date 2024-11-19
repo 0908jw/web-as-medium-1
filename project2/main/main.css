@@ -140,9 +140,9 @@ body {
   }
 
   .element1{
-    top: 28500px;
+    top: 28200px;
     left: 50%;
     display: block;
-    width: 25rem;
+    width: 40rem;
     position: absolute;
   }
