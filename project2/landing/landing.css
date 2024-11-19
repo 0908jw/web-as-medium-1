@@ -213,4 +213,10 @@ body {
     opacity: 1; 
     transition: opacity 0.5s ease-in-out, visibility 0s linear 0s;
   }
+
+  .reveal-button:hover{
+    color: rgba(255, 255, 255, 1);
+  box-shadow: 3px 5px 20px rgba(208, 142, 255, 0.7);
+  transition: all 0.2s ease-in-out;
+  }
   
