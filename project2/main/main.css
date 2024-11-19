@@ -1,0 +1,68 @@
+body {
+    margin: 0;
+    background-color: black;
+    height: 30000px;
+    overflow-x: hidden;
+  }
+  
+  .star {
+    position: absolute;
+    border-radius: 50%;
+    background-color: white;
+    z-index: -1;
+    animation: moveit 2.5s infinite;
+  }
+  
+  @keyframes moveit {
+    0% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.4;
+    }
+  }
+  body {
+    font-family: system-ui;
+    background: #000;
+    color: white;
+    text-align: center;
+  }
+  
+  @keyframes moonRotation {
+      0% {
+      background-position: 0% 0%;
+      border: 0px solid #00000000;
+    }
+    50% {
+      background-position: 150% 0%;
+      border: 0px solid #00000000;
+    }
+    100% {
+      background-position: 300% 0%;
+      border: 0px solid #00000000;
+    }
+  }
+  
+  .moon-background{
+    top: 3.5rem;
+    right: 33%;
+    display: block;
+    width: 30rem;
+    height: 30rem;
+    position: absolute;
+    border-radius: 50%;
+    background-image: url('https://www.solarsystemscope.com/textures/download/2k_moon.jpg');
+    background-repeat: repeat-x;
+    background-size: 110% 100%;
+    opacity: 1;
+    animation-name: moonRotation;
+    animation-duration: 20s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards !important;
+    box-shadow: inset -20px 18px 16px -15px #ffffff, 
+  inset 100px -60px 100px 60px rgba(0, 0, 0, 0.9), 7px -10px 20px rgba(255, 255, 255, 0.3215686275);
+  }
