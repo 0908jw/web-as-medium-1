@@ -216,7 +216,7 @@ body {
 
   .reveal-button:hover{
     color: rgba(255, 255, 255, 1);
-  box-shadow: 3px 5px 20px rgba(208, 142, 255, 0.7);
+  box-shadow: 3px 4px 20px rgba(208, 142, 255, 0.7);
   transition: all 0.2s ease-in-out;
   }
   
