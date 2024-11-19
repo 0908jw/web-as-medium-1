@@ -123,3 +123,11 @@ body {
         font-family: 'fs dot';
         transition:opacity .3s ease-in-out
   }
+  
+  .gif{
+    position: sticky;
+    top: 4%;
+    right: 95%;
+    width: 2rem;
+    height: 2rem;
+  }
