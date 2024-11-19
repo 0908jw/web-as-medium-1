@@ -46,7 +46,7 @@ body {
     }
   }
   
-  .moon-background{
+  .moon{
     top: 8.3rem;
     right: 33%;
     display: block;
@@ -55,6 +55,28 @@ body {
     position: absolute;
     border-radius: 50%;
     background-image: url('https://www.solarsystemscope.com/textures/download/2k_moon.jpg');
+    background-repeat: repeat-x;
+    background-size: 110% 100%;
+    opacity: 1;
+    animation-name: moonRotation;
+    animation-duration: 20s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards !important;
+    box-shadow: inset -20px 18px 16px -15px #ffffff, 
+  inset 100px -60px 100px 60px rgba(0, 0, 0, 0.9), 7px -10px 20px rgba(255, 255, 255, 0.3215686275);
+  }
+
+  .earth{
+    top: 29000px;
+    right: 2%;
+    display: block;
+    width: 80rem;
+    overflow: hidden;
+    height: 80rem;
+    position: absolute;
+    border-radius: 50%;
+    background-image: url('https://www.solarsystemscope.com/textures/download/2k_earth_nightmap.jpg');
     background-repeat: repeat-x;
     background-size: 110% 100%;
     opacity: 1;
