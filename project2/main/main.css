@@ -138,3 +138,11 @@ body {
     width: 25rem;
     position: absolute;
   }
+
+  .element1{
+    top: 28500px;
+    left: 50%;
+    display: block;
+    width: 25rem;
+    position: absolute;
+  }
