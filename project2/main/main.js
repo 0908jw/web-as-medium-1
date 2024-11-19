@@ -28,3 +28,20 @@ window.onload = () => {
   window.scrollTo(0, document.body.scrollHeight);
 };
 
+//Intersection observer API
+document.addEventListener("DOMContentLoaded", () => {
+  const text = document.querySelector('.hidden');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        text.classList.add('show');
+      } else {
+        text.classList.remove('show'); 
+      }
+    });
+  });
+  observer.observe(text);
+});
+
+

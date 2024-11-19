@@ -47,7 +47,7 @@ body {
   }
   
   .moon-background{
-    top: 3.5rem;
+    top: 8.3rem;
     right: 33%;
     display: block;
     width: 30rem;
@@ -65,4 +65,39 @@ body {
     animation-fill-mode: forwards !important;
     box-shadow: inset -20px 18px 16px -15px #ffffff, 
   inset 100px -60px 100px 60px rgba(0, 0, 0, 0.9), 7px -10px 20px rgba(255, 255, 255, 0.3215686275);
+  }
+
+  @font-face {
+    font-family: 'fs dot';
+    src: url('../fonts/fs-dot-serif.ttf') format('truetype');
+  }
+
+  .hidden{
+    position: absolute;
+    top: 50%;
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    font-size: 1.8rem;
+    opacity: 0;
+    transition: opacity 0.7s ease-in-out;
+    font-family: 'fs dot';
+  }
+
+  .hidden.show{
+    opacity: 1;
+  }
+
+  .distance{
+        position: sticky;
+        top: 95%;
+        width: 100%;
+        border-bottom: 1px dashed hsla(0, 0%, 100%, .2);
+        text-align: center;
+        padding-bottom: 10px;
+        font-size: 1.3rem;
+        transform: translateY(-50%);
+        color: #fff;
+        z-index: 3;
+        font-family: 'fs dot';
+        transition:opacity .3s ease-in-out
   }
