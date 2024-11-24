@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Globe Visualization</title>
+  <link rel="stylesheet" href="../main2/main.css">
+  <script src="//unpkg.com/satellite.js/dist/satellite.min.js"></script>
+  <script src="//unpkg.com/globe.gl"></script>
+</head>
+<body>
+  <div id="chart"></div>
+  <div id="time-log"></div>
+  <div class="container">
+    <div class="range-slider">
+      <div id="slider_thumb" class="range-slider_thumb"></div>
+      <div class="range-slider_line">
+        <div id="slider_line" class="range-slider_line-fill"></div>
+      </div>
+      <input id="slider_input" class="range-slider_input" type="range" value="20" min="1960" max="2024">
+    </div>
+  </div>
+  <script type="module" src="../main2/main.js"></script>
+</body>
+</html>
