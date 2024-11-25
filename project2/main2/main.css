@@ -1,7 +1,27 @@
 body {
     margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #000000;
+}
+
+#chart-container {
+    position: relative;
+    width: 90vmin;
+    height: 90vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
   }
- 
+
+#chart {
+    width: 100%;
+    height: 100%;
+  }
+
 .container {
     position: absolute;
     bottom: -10%;
