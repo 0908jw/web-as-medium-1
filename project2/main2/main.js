@@ -50,8 +50,7 @@ world.objectThreeObject(() => {
     opacity: 0.7
   });
 
-  const mesh = new THREE.Mesh(geometry, material);
-
+    const mesh = new THREE.Mesh(geometry, material);
     
     const randomScale = Math.random() * 2.0 + 0.5; 
     //Random scale between 0.5 and 2.5
@@ -154,13 +153,11 @@ function updateSatellites() {
   const circleButton = document.getElementById('circle-button');
 const popup = document.getElementById('popup');
 
-// Show the popup when the circle button is clicked
 circleButton.addEventListener('click', () => {
   popup.classList.remove('hidden');
   createOverlay();
 });
 
-// Close the popup when clicking outside
 function createOverlay() {
   const overlay = document.createElement('div');
   overlay.classList.add('popup-overlay');
@@ -172,22 +169,20 @@ function createOverlay() {
   });
 }
 
-let isRotating = false; // State to track rotation
-let currentLng = 0; // Initial longitude
+let isRotating = false; 
+let currentLng = 0; 
 
 function rotateGlobe() {
-  if (!isRotating) return; // Stop rotation if not active
+  if (!isRotating) return; 
 
-  currentLng = (currentLng + 0.1) % 360; // Increment longitude slightly
-  world.pointOfView({ lat: 0, lng: currentLng, altitude: 2.5 }); // Update globe position
+  currentLng = (currentLng + 0.1) % 360; 
+  world.pointOfView({ lat: 0, lng: currentLng, altitude: 2.5 });
 
-  requestAnimationFrame(rotateGlobe); // Continue the animation loop
+  requestAnimationFrame(rotateGlobe); 
 }
 
-// Start/stop rotation when the button is pressed
 const rotateButton = document.getElementById('rotate-button');
 rotateButton.addEventListener('click', () => {
-  isRotating = !isRotating; // Toggle rotation state
-  if (isRotating) rotateGlobe(); // Start rotating if toggled on
+  isRotating = !isRotating; 
+  if (isRotating) rotateGlobe(); 
 });
-
