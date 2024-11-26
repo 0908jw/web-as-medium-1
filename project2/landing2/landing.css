@@ -98,7 +98,7 @@
 
   .reveal-button {
     position: absolute;
-    top: 50%;
+    top: 67%;
     left: 50%; 
     transform: translate(-50%, -50%);
     padding: 7px 14px;
@@ -127,3 +127,29 @@
   transition: all 0.3s ease-in-out;
   }
   
+  .about{
+    position: absolute;
+    top: 44%;
+    left: 50%; 
+    padding: 12rem;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    font-family: 'fs dot';
+    opacity: 0; 
+    visibility: hidden; 
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+    z-index: 10;
+    line-height: 1.1;
+  }
+
+  .about.show{
+    visibility: visible; 
+    opacity: 1; 
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0s;
+  }
+
+
+
+

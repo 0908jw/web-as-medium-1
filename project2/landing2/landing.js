@@ -30,18 +30,20 @@ stars.create();
 
 document.addEventListener("DOMContentLoaded", () => {
   const text = document.querySelector(".text");
-  const button = document.querySelector(".reveal-button"); // Select the button
+  const button = document.querySelector(".reveal-button");
+  const about = document.querySelector(".about"); 
 
   setTimeout(() => {
     text.classList.add("show");
   }, 500);
 
-  // Remove the text after 3 seconds, then show the button
   setTimeout(() => {
     text.classList.remove("show");
 
     setTimeout(() => {
       button.classList.add("show");
+      about.classList.add("show");
     }, 500);
   }, 3000);
 });
+

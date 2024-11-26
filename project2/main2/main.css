@@ -168,7 +168,7 @@ body {
     background: black;
     border-radius: 10px;
     box-shadow: 0 5px px rgba(0, 0, 0, 0.2);
-    padding: 150px;
+    padding: 120px;
     z-index: 1000;
     color: #ffffff;
   }
@@ -181,6 +181,7 @@ body {
     font-size: 18px;
     text-align: center;
     font-family: 'fs dot';
+    line-height: 1.1;
   }
   
   .popup-overlay {
