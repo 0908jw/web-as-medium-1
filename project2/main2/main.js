@@ -1,53 +1,71 @@
 import * as THREE from '//unpkg.com/three/build/three.module.js';
 
-const EARTH_RADIUS_KM = 6371; // km
-const SAT_SIZE = 100; // km
-const TIME_STEP = 3 * 1000; // per frame
+const EARTH_RADIUS_KM = 6371;
+const SAT_SIZE = 100; 
+const TIME_STEP = 3000; 
 
 const timeLogger = document.getElementById('time-log');
+const slider_input = document.getElementById('slider_input');
+const slider_thumb = document.getElementById('slider_thumb');
+const slider_line = document.getElementById('slider_line');
 
 const world = Globe()
   (document.getElementById('chart'))
-  .globeImageUrl('../assets/moonsurface.jpeg')
+  .globeImageUrl('../assets/moonsurface.jpeg') 
   .objectLat('lat')
   .objectLng('lng')
   .objectAltitude('alt')
   .objectFacesSurface(false)
   .objectLabel('name');
 
-  setTimeout(() => {
-    const globeScale = 0.7;
-    world.scene().scale.set(globeScale, globeScale, globeScale);
-  }, 0);
-
+setTimeout(() => {
+  const globeScale = 0.7;
+  world.scene().scale.set(globeScale, globeScale, globeScale);
+}, 0);
 setTimeout(() => world.pointOfView({ altitude: 3.5 }));
 
-const satGeometry = new THREE.OctahedronGeometry(SAT_SIZE * world.getGlobeRadius() / EARTH_RADIUS_KM / 2, 0);
-const satMaterial = new THREE.MeshLambertMaterial({ color: 'palegreen', transparent: true, opacity: 0.7 });
-world.objectThreeObject(() => new THREE.Mesh(satGeometry, satMaterial));
+// Satellite object material and geometry
+const satGeometry = new THREE.BoxGeometry(
+    SAT_SIZE * world.getGlobeRadius() / EARTH_RADIUS_KM / 2, // Width
+    SAT_SIZE * world.getGlobeRadius() / EARTH_RADIUS_KM / 2, // Height
+    SAT_SIZE * world.getGlobeRadius() / EARTH_RADIUS_KM / 2  // Depth
+  );
+  const satMaterial = new THREE.MeshLambertMaterial({ color: 'palegreen', transparent: true, opacity: 0.7 });
+  
+  // Replace the satellite object creation with the updated geometry
+  world.objectThreeObject(() => new THREE.Mesh(satGeometry, satMaterial));
+  
 
-fetch('../main2/debris.txt').then(r => r.text()).then(rawData => {
-  const tleData = rawData.replace(/\r/g, '')
-    .split(/\n(?=[^12])/)
-    .filter(d => d)
-    .map(tle => tle.split('\n'));
-  const satData = tleData.map(([name, ...tle]) => ({
-    satrec: satellite.twoline2satrec(...tle),
-    name: name.trim().replace(/^0 /, '')
-  }))
-  // exclude those that can't be propagated
-  .filter(d => !!satellite.propagate(d.satrec, new Date()).position)
-  .slice(0, 2000);
+let satData = [];
 
-  // time ticker
-  let time = new Date();
-  (function frameTicker() {
-    requestAnimationFrame(frameTicker);
+fetch('../main2/debris.txt')
+  .then(response => response.text())
+  .then(rawData => {
+    const tleData = rawData.replace(/\r/g, '') 
+      .split(/\n(?=[^12])/)
+      .filter(d => d)
+      .map(tle => tle.split('\n'));
 
-    time = new Date(+time + TIME_STEP);
-    timeLogger.innerText = time.toString();
+    const allSatData = tleData.map(([name, ...tle]) => ({
+      satrec: satellite.twoline2satrec(...tle),
+      name: name.trim().replace(/^0 /, '')
+    }))
+    .filter(d => !!satellite.propagate(d.satrec, new Date()).position);
 
-    // Update satellite positions
+    satData = allSatData; 
+    updateSatellites(); 
+  })
+  .catch(err => console.error('Error fetching TLE data:', err));
+
+let time = new Date();
+
+(function frameTicker() {
+  requestAnimationFrame(frameTicker);
+
+  time = new Date(+time + TIME_STEP);
+  timeLogger.innerText = time.toString();
+
+  if (satData.length > 0) {
     const gmst = satellite.gstime(time);
     satData.forEach(d => {
       const eci = satellite.propagate(d.satrec, time);
@@ -58,25 +76,36 @@ fetch('../main2/debris.txt').then(r => r.text()).then(rawData => {
         d.alt = gdPos.height / EARTH_RADIUS_KM;
       }
     });
+  }
+})();
 
-    world.objectsData(satData);
-  })();
-});
+function updateSatellites() {
+  if (satData.length === 0) return;
 
-const slider_input = document.getElementById('slider_input'),
-      slider_thumb = document.getElementById('slider_thumb'),
-      slider_line = document.getElementById('slider_line');
+  const sliderValue = parseInt(slider_input.value); 
+  const yearFraction = (sliderValue - 1960) / (2020 - 1960); 
+  const minSatellites = 2; 
+  const maxSatellites = satData.length; 
 
-function showSliderValue() {
-  slider_thumb.innerHTML = slider_input.value;
-  const bulletPosition = (slider_input.value /slider_input.max),
-        space = slider_input.offsetWidth - slider_thumb.offsetWidth;
+  const numSatellites = Math.floor(minSatellites + yearFraction * (maxSatellites - minSatellites));
+  const satellitesToShow = satData.slice(0, numSatellites);
 
-  slider_thumb.style.left = (bulletPosition * space) + 'px';
-  slider_line.style.width = slider_input.value + '%';
+  world.objectsData(satellitesToShow); 
 }
 
-showSliderValue();
-window.addEventListener("resize",showSliderValue);
+function showSliderValue() {
+  const sliderValue = parseInt(slider_input.value); 
+  slider_thumb.innerHTML = sliderValue; 
+  const bulletPosition = (sliderValue - 1960) / (2020 - 1960); 
+  const space = slider_input.offsetWidth - slider_thumb.offsetWidth;
+
+  slider_thumb.style.left = `${bulletPosition * space}px`; 
+  slider_line.style.width = `${bulletPosition * 100}%`; 
+
+  updateSatellites(); 
+}
+
 slider_input.addEventListener('input', showSliderValue, false);
+updateSatellites();
+
 

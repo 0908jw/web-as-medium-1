@@ -50,7 +50,7 @@
     width: 400vw;
     left: -150vw;
     top: -150vh;
-    /* overflow: hidden; */
+    overflow: hidden;
     background: #000;
     transform-origin: 50% 50%;
     animation: spin 500s linear 0s infinite normal;

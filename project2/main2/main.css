@@ -4,22 +4,25 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #000000;
+    background-color: transparent;
+    overflow: hidden;
 }
 
 #chart-container {
     position: relative;
-    width: 90vmin;
-    height: 90vmin;
+    width: 95vw; 
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
+    background-color: transparent;
   }
-
+  
 #chart {
     width: 100%;
     height: 100%;
+    display: block;
   }
 
 .container {
@@ -27,7 +30,14 @@ body {
     bottom: -10%;
     left: 50%; 
     transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    padding: 10px;
 }
+
 .range-slider {
 	position: relative;
 	width: 80vmin;
@@ -41,11 +51,11 @@ body {
 	z-index: 3;
 	transform: translateY(-50%);
 	-webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 4px;
-  opacity: 0;
-	margin: 0;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    opacity: 0;
+    margin: 0;
 }
 
 .range-slider_input::-webkit-slider-thumb {
@@ -66,10 +76,16 @@ body {
 	opacity: 0;
 }
 
+@font-face {
+    font-family: 'fs dot';
+    src: url('../fonts/fs-dot-serif.ttf') format('truetype');
+  }
+
 .range-slider_thumb {
-	width: 4rem;
-	height: 2rem;
-	border: 0.2vmin solid #ffffff;
+	width: 3rem;
+	height: 1.5rem;
+	border: 0.13vmin solid #ffffff;
+    border-style: dotted;
 	border-radius: 10%;
 	position: absolute;
 	left: 0;
@@ -79,8 +95,8 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-weight: 700;
-	font-size: 1rem;
+	font-size: 23px;
+    font-family: 'fs dot';
 	color: #ffffff;
 	z-index: 2;
 }
