@@ -30,8 +30,36 @@ const satGeometry = new THREE.BoxGeometry(
   SAT_SIZE * world.getGlobeRadius() / EARTH_RADIUS_KM / 2,
   SAT_SIZE * world.getGlobeRadius() / EARTH_RADIUS_KM / 2
 );
+
 const satMaterial = new THREE.MeshLambertMaterial({ color: 'aquamarine', transparent: true, opacity: 0.7 });
-world.objectThreeObject(() => new THREE.Mesh(satGeometry, satMaterial));
+
+world.objectThreeObject(() => {
+    const geometry = new THREE.BoxGeometry(
+      SAT_SIZE * world.getGlobeRadius() / EARTH_RADIUS_KM / 2,
+      SAT_SIZE * world.getGlobeRadius() / EARTH_RADIUS_KM / 2,
+      SAT_SIZE * world.getGlobeRadius() / EARTH_RADIUS_KM / 2
+    );
+
+    const shouldGlow = Math.random() > 0.5; //50% chance to glow
+
+  const material = new THREE.MeshStandardMaterial({
+    color: 'aquamarine',
+    emissive: shouldGlow ? 'aquamarine' : 'black', 
+    emissiveIntensity: shouldGlow ? Math.random() * 1.5 + 0.5 : 0,
+    transparent: true,
+    opacity: 0.7
+  });
+
+  const mesh = new THREE.Mesh(geometry, material);
+
+    
+    const randomScale = Math.random() * 2.0 + 0.5; 
+    //Random scale between 0.5 and 2.5
+    mesh.scale.set(randomScale, randomScale, randomScale);
+    
+    return mesh;
+  });  
+  
 
 let satData = [];
 
@@ -143,3 +171,23 @@ function createOverlay() {
     overlay.remove();
   });
 }
+
+let isRotating = false; // State to track rotation
+let currentLng = 0; // Initial longitude
+
+function rotateGlobe() {
+  if (!isRotating) return; // Stop rotation if not active
+
+  currentLng = (currentLng + 0.1) % 360; // Increment longitude slightly
+  world.pointOfView({ lat: 0, lng: currentLng, altitude: 2.5 }); // Update globe position
+
+  requestAnimationFrame(rotateGlobe); // Continue the animation loop
+}
+
+// Start/stop rotation when the button is pressed
+const rotateButton = document.getElementById('rotate-button');
+rotateButton.addEventListener('click', () => {
+  isRotating = !isRotating; // Toggle rotation state
+  if (isRotating) rotateGlobe(); // Start rotating if toggled on
+});
+

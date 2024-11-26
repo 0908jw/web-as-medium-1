@@ -196,3 +196,24 @@ body {
   a {
     color: aquamarine;
   }
+
+
+  .rotate-button {
+    position: fixed;
+    top: 15px;
+    left: 60px;
+    background-color: transparent;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .rotate-button:hover {
+   color: aquamarine;
+   transition: all 0.3s ease-in-out;
+  }
+  
