@@ -133,8 +133,8 @@ button {
 }
 
 .circle:nth-child(6) {
-    top: 5%;
-    left: 80%;
+    top: 10%;
+    left: 79%;
     background: radial-gradient(circle, rgb(255, 255, 255) 20%, rgb(24, 24, 24) 100%);
 }
 
