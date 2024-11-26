@@ -148,7 +148,7 @@ function updateSatellites() {
   slider_input.addEventListener('input', showSliderValue, false);
   showSliderValue();
   
-  //-------------button---------
+  //-------------button---------//
 
   const circleButton = document.getElementById('circle-button');
 const popup = document.getElementById('popup');
