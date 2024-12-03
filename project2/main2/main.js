@@ -31,33 +31,46 @@ const satGeometry = new THREE.BoxGeometry(
   SAT_SIZE * world.getGlobeRadius() / EARTH_RADIUS_KM / 2
 );
 
-const satMaterial = new THREE.MeshLambertMaterial({ color: 'aquamarine', transparent: true, opacity: 0.7 });
+const satMaterial = new THREE.MeshLambertMaterial({ color: 'white', transparent: true, opacity: 0.7 });
+
 
 world.objectThreeObject(() => {
-    const geometry = new THREE.BoxGeometry(
-      SAT_SIZE * world.getGlobeRadius() / EARTH_RADIUS_KM / 2,
-      SAT_SIZE * world.getGlobeRadius() / EARTH_RADIUS_KM / 2,
-      SAT_SIZE * world.getGlobeRadius() / EARTH_RADIUS_KM / 2
-    );
+  const geometry = new THREE.BoxGeometry(
+    SAT_SIZE * world.getGlobeRadius() / EARTH_RADIUS_KM / 2,
+    SAT_SIZE * world.getGlobeRadius() / EARTH_RADIUS_KM / 2,
+    SAT_SIZE * world.getGlobeRadius() / EARTH_RADIUS_KM / 2
+  );
 
-    const shouldGlow = Math.random() > 0.5; //50% chance to glow
+  //randomly categorized satellites
+  const randomCategory = Math.random();
+  let color;
+  
+  if (randomCategory < 0.8) {
+    color = 'aquamarine'; // 80% small debris
+  } else if (randomCategory < 0.95) {
+    color = 'yellow'; // 15% rocket parts
+  } else {
+    color = 'gray'; // 5% old satellites
+  }
+
+  const shouldGlow = Math.random() > 0.5;
 
   const material = new THREE.MeshStandardMaterial({
-    color: 'aquamarine',
-    emissive: shouldGlow ? 'aquamarine' : 'black', 
+    color: color,
+    emissive: shouldGlow ? color : 'black',
     emissiveIntensity: shouldGlow ? Math.random() * 1.5 + 0.5 : 0,
     transparent: true,
     opacity: 0.7
   });
 
-    const mesh = new THREE.Mesh(geometry, material);
-    
-    const randomScale = Math.random() * 2.0 + 0.5; 
-    //Random scale between 0.5 and 2.5
-    mesh.scale.set(randomScale, randomScale, randomScale);
-    
-    return mesh;
-  });  
+  const mesh = new THREE.Mesh(geometry, material);
+
+  const randomScale = Math.random() * 2.0 + 0.5;
+  // random scale between 0.5 and 2.5
+  mesh.scale.set(randomScale, randomScale, randomScale);
+
+  return mesh;
+});
 
 let satData = [];
 
@@ -207,3 +220,4 @@ globeContainer.addEventListener('mouseleave', () => {
 
   isRotating = true; 
 });
+

@@ -217,4 +217,41 @@ body {
    color: aquamarine;
    transition: all 0.3s ease-in-out;
   }
+
+
+  #control-menu {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 200px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    z-index: 1000;
+  }
+  
+  #control-menu h3 {
+    margin: 0;
+    padding: 0 0 10px 0;
+    font-size: 16px;
+    border-bottom: 1px solid white;
+  }
+  
+  #control-menu div {
+    margin: 5px 0;
+  }
+  
+  #control-menu label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  #control-menu input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  
   
