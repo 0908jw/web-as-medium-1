@@ -20,7 +20,7 @@ const world = Globe()
   .objectLabel('name');
 
 setTimeout(() => {
-  const globeScale = 0.7;
+  const globeScale = 0.6; //globe size
   world.scene().scale.set(globeScale, globeScale, globeScale);
 }, 0);
 setTimeout(() => world.pointOfView({ altitude: 3.5 }));
@@ -58,7 +58,6 @@ world.objectThreeObject(() => {
     
     return mesh;
   });  
-  
 
 let satData = [];
 
@@ -148,41 +147,63 @@ function updateSatellites() {
   slider_input.addEventListener('input', showSliderValue, false);
   showSliderValue();
   
-  //-------------button---------
-
-  const circleButton = document.getElementById('circle-button');
-const popup = document.getElementById('popup');
-
-circleButton.addEventListener('click', () => {
-  popup.classList.remove('hidden');
-  createOverlay();
-});
-
-function createOverlay() {
-  const overlay = document.createElement('div');
-  overlay.classList.add('popup-overlay');
-  document.body.appendChild(overlay);
-
-  overlay.addEventListener('click', () => {
-    popup.classList.add('hidden');
-    overlay.remove();
-  });
-}
-
-let isRotating = false; 
-let currentLng = 0; 
+//--------------------------------
+let isRotating = true;
+let isDragging = false;
+let currentLat = 0;
+let currentLng = 0;
 
 function rotateGlobe() {
-  if (!isRotating) return; 
-
-  currentLng = (currentLng + 0.1) % 360; 
-  world.pointOfView({ lat: 0, lng: currentLng, altitude: 2.5 });
-
+  if (isRotating && !isDragging) {
+    currentLng = (currentLng + 0.1) % 360; 
+    world.pointOfView({ lat: currentLat, lng: currentLng, altitude: 2.5 });
+  }
   requestAnimationFrame(rotateGlobe); 
 }
 
-const rotateButton = document.getElementById('rotate-button');
-rotateButton.addEventListener('click', () => {
-  isRotating = !isRotating; 
-  if (isRotating) rotateGlobe(); 
+rotateGlobe();
+
+//pause rotation on interaction
+const globeContainer = document.getElementById('chart');
+let lastLat = 0;
+let lastLng = 0;
+
+globeContainer.addEventListener('mousedown', () => {
+  isDragging = true;
+  const viewpoint = world.pointOfView(); 
+  lastLat = viewpoint.lat; 
+  lastLng = viewpoint.lng; 
+});
+
+globeContainer.addEventListener('mousemove', (event) => {
+  if (isDragging) {
+    isRotating = false; 
+    const deltaX = event.movementX * 0.1; 
+    const deltaY = event.movementY * 0.1;
+
+    lastLng = (lastLng + deltaX) % 360; 
+    lastLat = Math.max(-90, Math.min(90, lastLat - deltaY)); 
+
+    world.pointOfView({ lat: lastLat, lng: lastLng, altitude: 2.5 });
+  }
+});
+
+globeContainer.addEventListener('mouseup', () => {
+  isDragging = false;
+
+  const viewpoint = world.pointOfView();
+  currentLat = viewpoint.lat; 
+  currentLng = viewpoint.lng; 
+
+  isRotating = true; 
+});
+
+globeContainer.addEventListener('mouseleave', () => {
+  isDragging = false;
+
+  const viewpoint = world.pointOfView();
+  currentLat = viewpoint.lat;
+  currentLng = viewpoint.lng;
+
+  isRotating = true; 
 });
