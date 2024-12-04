@@ -85,7 +85,7 @@ body {
 	width: 3rem;
 	height: 1.5rem;
 	border: 0.15vmin solid #ffffff;
-    border-style: dotted;
+  border-style: dotted;
 	border-radius: 10%;
 	position: absolute;
 	left: 0;
@@ -96,7 +96,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	font-size: 23px;
-    font-family: 'fs dot';
+  font-family: 'fs dot';
 	color: #ffffff;
 	z-index: 2;
 }
@@ -123,24 +123,13 @@ body {
     font-size: 21px;
 }
 
-#counter{
-    position: absolute;
-    top: 10.5%;
-    left: 50%; 
-    transform: translate(-50%, -50%);
-    color: #ffffff;
-    z-index: 10;
-    font-family: 'fs dot';
-    font-weight: 1000;
-    font-size: 23px;   
-}
 
 /* button */
   .button-container {
     position: fixed;
     top: 24px;
     left: 30px;
-    z-index: 10;
+    z-index: 1100;
   }
   
   .circle-button {
@@ -149,7 +138,6 @@ body {
     border: none;
     font-size: 30px;
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -160,62 +148,43 @@ body {
     transition: all 0.3s ease-in-out;
   }
 
+.hidden{
+  display: none !important;
+}
   .popup {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: black;
-    border-radius: 10px;
-    box-shadow: 0 5px px rgba(0, 0, 0, 0.2);
-    padding: 130px;
-    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100vw; 
+    height: 100vh; 
     color: #ffffff;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
   }
-  
-  .popup.hidden {
-    display: none;
-  }
-  
+
   .popup-content {
+    padding: 27rem;
     font-size: 18px;
     text-align: center;
     font-family: 'fs dot';
     line-height: 1.1;
+    z-index: 1001;
   }
   
   .popup-overlay {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
     z-index: 999;
   }
-  
+
   a {
     color: aquamarine;
-  }
-
-  /*rotate*/
-  .rotate-button {
-    position: fixed;
-    top: 14.3px;
-    left: 60px;
-    background-color: transparent;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 28px;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  }
-  
-  .rotate-button:hover {
-   color: aquamarine;
-   transition: all 0.3s ease-in-out;
   }
 
 
@@ -224,24 +193,17 @@ body {
     top: 10px;
     right: 10px;
     width: 200px;
-    padding: 10px;
-    background-color: rgba(0, 0, 0, 0.8);
+    padding: 2rem;
+    padding-top: 24px;
+    background-color: transparent;
     color: white;
     border-radius: 8px;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    z-index: 1000;
-  }
-  
-  #control-menu h3 {
-    margin: 0;
-    padding: 0 0 10px 0;
-    font-size: 16px;
-    border-bottom: 1px solid white;
+    font-family: 'fs dot';
+    font-size: 20px;
   }
   
   #control-menu div {
-    margin: 5px 0;
+    margin-top: 5px;
   }
   
   #control-menu label {
@@ -249,9 +211,90 @@ body {
     align-items: center;
     cursor: pointer;
   }
-  
-  #control-menu input[type="checkbox"] {
+
+
+  #counter{
+    display: inline;
+    color: #ffffff;
+    z-index: 10;
+    font-family: 'fs dot';
+    font-size: 25px;
+}
+
+#control-menu input[type="checkbox"] {
+  position: absolute;
+  opacity: 0; 
+  pointer-events: none; 
+}
+
+.custom-checkbox {
+    width: 13px;
+    height: 13px;
+    border: 1px dotted rgb(255, 255, 255);
     margin-right: 10px;
+    background-color: transparent;
+    display: inline-block;
+    transition: background-color 0.3s ease;
   }
   
+  input[type="checkbox"]:checked + .custom-checkbox {
+    border-color: currentColor;
+  }  
+
+  .custom-checkbox.teal {
+    background-color: transparent;
+  }
   
+  .custom-checkbox.yellow {
+    background-color: transparent;
+  }
+  
+  .custom-checkbox.aquamarine {
+    background-color: transparent;
+  }
+  
+  .custom-checkbox blueviolet {
+    background-color: transparent;
+  }
+  
+  .custom-checkbox sienna {
+    background-color: transparent;
+  }
+  
+  input[type="checkbox"]:checked + .custom-checkbox.teal {
+    background-color: teal;
+  }
+  
+  input[type="checkbox"]:checked + .custom-checkbox.yellow {
+    background-color: yellow;
+  }
+  
+  input[type="checkbox"]:checked + .custom-checkbox.aquamarine {
+    background-color: aquamarine;
+  }
+  
+  input[type="checkbox"]:checked + .custom-checkbox.blueviolet {
+    background-color: blueviolet;
+  }
+  
+  input[type="checkbox"]:checked + .custom-checkbox.sienna {
+    background-color: sienna;
+  }
+  
+  .year-context {
+    display: none;
+  }
+  
+  .year-context.active {
+    display: block;
+  }
+  
+  .year-image {
+    display: none;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .year-context.active .year-image {
+    display: block;
+  }

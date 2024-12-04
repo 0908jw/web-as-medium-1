@@ -33,7 +33,6 @@ const satGeometry = new THREE.BoxGeometry(
 
 const satMaterial = new THREE.MeshLambertMaterial({ color: 'white', transparent: true, opacity: 0.7 });
 
-
 world.objectThreeObject(() => {
   const geometry = new THREE.BoxGeometry(
     SAT_SIZE * world.getGlobeRadius() / EARTH_RADIUS_KM / 2,
@@ -45,12 +44,16 @@ world.objectThreeObject(() => {
   const randomCategory = Math.random();
   let color;
   
-  if (randomCategory < 0.8) {
-    color = 'aquamarine'; // 80% small debris
+  if (randomCategory < 0.05) {
+    color = 'teal'; // 5% - old satellites
+  } else if (randomCategory < 0.25) {
+    color = 'yellow'; // 20% - rocket parts
   } else if (randomCategory < 0.95) {
-    color = 'yellow'; // 15% rocket parts
+    color = 'aquamarine'; // 70% - broken pieces
+  } else if (randomCategory < 0.96) {
+    color = 'blueviolet'; // 1% - lost tools
   } else {
-    color = 'gray'; // 5% old satellites
+    color = 'sienna'; // 4% - tiny bits and dust
   }
 
   const shouldGlow = Math.random() > 0.5;
@@ -69,6 +72,7 @@ world.objectThreeObject(() => {
   // random scale between 0.5 and 2.5
   mesh.scale.set(randomScale, randomScale, randomScale);
 
+  satellite.color = color; // Assign category color for filtering
   return mesh;
 });
 
@@ -136,9 +140,11 @@ function updateSatellites() {
   
     const counterValue = getNonLinearScaledValue(sliderValue, minCounterValue, maxCounterValue);
   
+   
     counter.innerText = `${counterValue} junks`;
   
-    slider_thumb.innerHTML = sliderValue;
+    slider_thumb.innerText = sliderValue;
+  
     const bulletPosition = (sliderValue - 1960) / (2020 - 1960);
     const space = slider_input.offsetWidth - slider_thumb.offsetWidth;
   
@@ -146,7 +152,9 @@ function updateSatellites() {
     slider_line.style.width = `${bulletPosition * 100}%`;
   
     updateSatellites();
+    updateYearContext(sliderValue); 
   }
+  
   
   function getNonLinearScaledValue(year, minValue, maxValue) {
     const midYear = 2000;
@@ -157,8 +165,28 @@ function updateSatellites() {
     return Math.round(minValue + fraction * (maxValue - minValue));
   }
   
+ 
+  function updateYearContext(sliderValue) {
+    const yearContexts = document.querySelectorAll('.year-context');
+    
+    yearContexts.forEach((context) => {
+      context.style.display = 'none';
+    });
+
+    const matchingContext = Array.from(yearContexts).find(
+      (context) => parseInt(context.getAttribute('data-year'), 10) === sliderValue
+    );
+  
+    if (matchingContext) {
+      matchingContext.style.display = 'block';
+    }
+  }
+  
   slider_input.addEventListener('input', showSliderValue, false);
-  showSliderValue();
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    showSliderValue(); 
+  });
   
 //--------------------------------
 let isRotating = true;
@@ -221,3 +249,29 @@ globeContainer.addEventListener('mouseleave', () => {
   isRotating = true; 
 });
 
+//pop up-------------------
+document.addEventListener('DOMContentLoaded', () => {
+  const popup = document.querySelector('.popup');
+  const overlay = document.querySelector('.popup-overlay');
+  const button = document.querySelector('.circle-button');
+
+  // Ensure popup and overlay are hidden by default
+  popup.classList.add('hidden');
+  overlay.classList.add('hidden');
+
+  // Function to toggle popup visibility
+  function togglePopup() {
+      const isHidden = popup.classList.contains('hidden');
+      popup.classList.toggle('hidden', !isHidden);
+      overlay.classList.toggle('hidden', !isHidden);
+  }
+
+  // Show the popup when the button is clicked
+  button.addEventListener('click', togglePopup);
+
+  // Hide the popup when the overlay is clicked
+  overlay.addEventListener('click', () => {
+      popup.classList.add('hidden');
+      overlay.classList.add('hidden');
+  });
+});

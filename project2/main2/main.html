@@ -19,57 +19,141 @@
       <div class="range-slider_line">
         <div id="slider_line" class="range-slider_line-fill"></div>
       </div>
-      <input id="slider_input" class="range-slider_input" type="range" value="2020" min="1960" max="2020">
+      <input id="slider_input" class="range-slider_input" type="range" value="2020" min="1960" max="2020" step="1">
     </div>
   </div>
   <div class="quote">Slide to track space junks growth around the Moon</div>
-  <div id="counter">2</div>
-  
+  <div id="content">
   <div class="button-container">
     <button id="circle-button" class="circle-button">◌</button>
   </div>
-  <div id="popup" class="popup hidden">
+  
+  <div class="popup hidden">
     <div class="popup-content">
       <p>
         <strong style="font-size: 25px;">The Growing Threat of Space Junk <br>Around the Moon</strong>
         <br><br>
-        As lunar exploration gains momentum, space debris near the Moon is becoming an urgent concern. In the 1960s, the Moon’s vicinity was relatively clear, with only a few mission-related objects in orbit or on its surface. Fast forward to today, and the number of human-made objects near the Moon has increased dramatically, including orbiters, landers, and mission remnants. This growing clutter poses significant challenges for future lunar missions.
-        <br><br><br>
-        <strong style="font-size: 25px;">Why Lunar Space Debris Matters</strong>
-        <br><br>
-        Space junk around the Moon often goes untracked, creating unpredictable hazards that can interfere with spacecraft approaching or leaving lunar orbit, significantly increasing the risk of collisions. For missions like NASA’s Artemis program, these risks pose a serious threat to both equipment and astronaut safety. This debris isn’t just a navigation challenge—it represents a broader obstacle to humanity’s ability to explore and sustain operations in space. As we enter a new era of lunar exploration, addressing this growing issue is vital to ensuring safe passage and the success of future missions.
-        <br><br>
-        <div style="font-size: 22px;">•··································································································································•</div>
-        <br><br>
+        As lunar exploration accelerates with programs like NASA's Artemis, the increasing presence of space debris near the Moon has become a pressing concern. In the 1960s, the Moon's orbit was relatively clear, with only a few mission-related objects. Today, it is cluttered with orbiters, landers, and mission remnants, creating unpredictable hazards for spacecraft. Untracked debris significantly raises the risk of collisions, endangering both equipment and astronaut safety. Beyond navigation challenges, this accumulation of junk threatens humanity's ability to sustain operations and explore space effectively. Addressing this issue is essential to ensure the success of future missions and safeguard our journey into a new era of lunar exploration.
+        <div style="font-size: 22px;">··································································································································</div>
+        <br>
         <strong>Be Part of the Solution</strong>
         <br><br>
-        Join <a href="https://lunascope.org" target="_blank">LunaSCOPE</a> at Moon Makers to explore innovative solutions and support the future of space exploration.
+        Join <a href="https://lunascope.org" target="_blank">LunaSCOPE</a> at community events to explore innovative solutions and support the future of space exploration.
         <a href="https://lunascope.org/public/" target="_blank">Learn more</a>
+        <br><br>
+        <div style="font-size: 22px;">··································································································································</div>
+        <br>
+        <strong>Resources</strong>
+        <br><br>
+        Staff, Space. com. (2021, March 15). Lunar timeline: Humanity’s explorations of the Moon.
+        <br>Lunascope. (n.d.). 
     </p>
     </div>
+    <div class="popup-overlay hidden"></div>
   </div>
+</div>
   <div id="control-menu">
-    <h3>Controls</h3>
-    <p>Satellites: <span id="satellite-count">0</span></p>
+    <div id="counter">2</div>
+    <div><br></div>
     <div>
       <label>
         <input type="checkbox" id="category-1" checked>
-        Category 1
+        <span class="custom-checkbox teal"></span>
+        Old Satellites
       </label>
     </div>
     <div>
       <label>
         <input type="checkbox" id="category-2" checked>
-        Category 2
+        <span class="custom-checkbox yellow"></span>Rocket Parts
       </label>
     </div>
     <div>
       <label>
-        <input type="checkbox" id="category-3" checked>
-        Category 3
+        <input type="checkbox" id="category-4" checked>
+        <span class="custom-checkbox aquamarine"></span>Broken Pieces
       </label>
     </div>
-  </div>  
+    <div>
+      <label>
+        <input type="checkbox" id="category-4" checked>
+        <span class="custom-checkbox blueviolet"></span>Lost Tools
+      </label>
+    </div>
+    <div>
+      <label>
+        <input type="checkbox" id="category-5" checked>
+        <span class="custom-checkbox sienna"></span>Tiny Bits and Dust
+      </label>
+    </div>
+<br>
+<div style="font-size: 22px;">·································································································</div>
+<div id="year-contexts">
+  <div class="year-context" data-year="1961">
+    <p>President John F. Kennedy proposed a manned lunar program.</p>
+    <img src="../assets/kennedy.jpg" alt="Kennedy" class="year-image">
+  </div>
+
+  <div class="year-context" data-year="1964">
+    <p>NASA's Ranger 7 produced the first close-up TV pictures of the lunar surface.</p>
+    <img src="https://www.universetoday.com/wp-content/uploads/2014/08/ranger7_model.jpg" alt="Ranger 7" class="year-image">
+  </div>
+
+  <div class="year-context" data-year="1967">
+    <p>NASA's Lunar Orbiter missions completed photographic mapping of the moon.</p>
+    <img src="https://medias.collectorsquare.com/images/products/379128/00pp-nasa-lunar-orbiter-mission-photograph-lunar-orbiter-v-129h-of-the-zenith-observation-from-the-lunar-soil-of-1967-vintage-gelatin-silver-print.jpg" alt="Lunar Orbiter" class="year-image">
+  </div>
+
+  <div class="year-context" data-year="1968">
+    <p>NASA's Apollo 8 made the first crewed flight to the moon, circling it 10 times before returning to Earth.</p>
+    <img src="https://www.politico.com/dims4/default/0886020/2147483647/legacy_thumbnail/1200x799%3E/quality/90/?url=https%3A%2F%2Fstatic.politico.com%2Fea%2F06%2F940ccaca41f78450e9c5a26e7a37%2Fwebp.net-resizeimage%20%2868%29.jpg" alt="Apollo 8" class="year-image">
+  </div>
+
+  <div class="year-context" data-year="1969">
+    <p>The Apollo 11 mission made the first landing on the moon and returned samples.</p>
+    <img src="https://www.lpi.usra.edu/lunar/missions/apollo/apollo_11/images/apollo-11-samples.jpg" alt="Apollo 11" class="year-image">
+    <p>Apollo 12 made the first precision landing on the moon.</p>
+    <img src="https://nubeowatches.com/cdn/shop/articles/apollo_as12-47-6897.jpg?v=1715590534" alt="Apollo 11" class="year-image">
+  </div>
+
+  <div class="year-context" data-year="1972">
+    <p>Apollo 17 made the last crewed landing of the Apollo Program.</p>
+    <img src="https://lh4.googleusercontent.com/proxy/dZxLZwBGb86v3O1C5Flug1al_0pH091DqQelJ8hxy3jEY4rfEh7obMyIL1_umn_nPNvRefkKDXDQrxjwhrwh_iB1RpH67hvawQ" alt="Apollo 17" class="year-image">
+  </div>
+
+  <div class="year-context" data-year="1990">
+    <p>NASA's Galileo spacecraft, on its way to Jupiter, obtained multispectral images of the western limb and part of the far side of the moon.</p>
+    <img src="https://cdn.mos.cms.futurecdn.net/LpSpinMrdCCWZ68CjU4yUF.jpg" alt="Galileo spacecraft" class="year-image">
+  </div>
+
+  <div class="year-context" data-year="1994">
+    <p>NASA's Clementine mission conducted multispectral mapping of the moon.</p>
+    <img src="https://cdn.britannica.com/07/76807-004-03FD582B/Gravity-maps-Moon-data-sides-Lunar-Prospector.jpg" alt="Clementine mission" class="year-image">
+  </div>
+
+  <div class="year-context" data-year="1998">
+    <p>NASA's Lunar Prospector mission launched.</p>
+    <img src="https://nssdc.gsfc.nasa.gov/image/spacecraft/lunarprosp.gif" alt="Lunar Prospector" class="year-image">
+  </div>
+
+  <div class="year-context" data-year="2009">
+    <p>NASA's Lunar Reconnaissance Orbiter launched along with the LCROSS probe which crashed into the moon, revealing water ice.</p>
+    <img src="https://cdn.britannica.com/75/135975-050-B26FF7C8/Lunar-Reconnaissance-Orbiter-NASA.jpg" alt="Lunar Reconnaissance Orbiter" class="year-image">
+  </div>
+
+  <div class="year-context" data-year="2011">
+    <p>NASA's Gravity Recovery and Interior Laboratory (GRAIL) mission mapped the moon's gravitational field in detail.</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/GRAIL.jpg/1200px-GRAIL.jpg" alt="GRAIL mission" class="year-image">
+  </div>
+
+  <div class="year-context" data-year="2013">
+    <p>NASA's Lunar Atmosphere and Dust Environment Explorer (LADEE) investigated the lunar atmosphere and dust.</p>
+    <img src="https://www.nasa.gov/wp-content/uploads/2019/04/ladee-0.jpg" alt="LADEE mission" class="year-image">
+  </div>
+</div>
+
+  </div> 
+  <script src="../main2/history.js"></script> 
   <script type="module" src="../main2/main.js"></script>
 </body>
 </html>
