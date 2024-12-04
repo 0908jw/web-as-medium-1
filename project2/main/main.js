@@ -78,7 +78,7 @@ world.objectThreeObject(() => {
 
 let satData = [];
 
-fetch('../main2/debris.txt')
+fetch('../main/debris.txt')
   .then(response => response.text())
   .then(rawData => {
     const tleData = rawData.replace(/\r/g, '')
