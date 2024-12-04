@@ -169,7 +169,7 @@ body {
     font-size: 18px;
     text-align: center;
     font-family: 'fs dot';
-    line-height: 1.1;
+    line-height: 1.05;
     z-index: 1001;
   }
   
@@ -283,10 +283,13 @@ body {
   
   .year-context {
     display: none;
+    font-size: 18px;
+    line-height: 1.05;
   }
   
   .year-context.active {
     display: block;
+
   }
   
   .year-image {

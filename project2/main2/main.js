@@ -255,21 +255,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const overlay = document.querySelector('.popup-overlay');
   const button = document.querySelector('.circle-button');
 
-  // Ensure popup and overlay are hidden by default
   popup.classList.add('hidden');
   overlay.classList.add('hidden');
 
-  // Function to toggle popup visibility
   function togglePopup() {
       const isHidden = popup.classList.contains('hidden');
       popup.classList.toggle('hidden', !isHidden);
       overlay.classList.toggle('hidden', !isHidden);
   }
 
-  // Show the popup when the button is clicked
   button.addEventListener('click', togglePopup);
-
-  // Hide the popup when the overlay is clicked
+  
   overlay.addEventListener('click', () => {
       popup.classList.add('hidden');
       overlay.classList.add('hidden');
