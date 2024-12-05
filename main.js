@@ -6,7 +6,7 @@ const button = document.getElementById('toggle');
 
         button.addEventListener('click', () => {
             if (isLightMode) {
-                backgroundContainer.style.backgroundImage = "url('../image/whiteversion.gif')"; 
+                backgroundContainer.style.backgroundImage = "url('whiteversion.gif')"; 
                 button.textContent = "Dark Mode";
                 helloText.style.color = "black";
                 helloText.style.textShadow = "1px 1px 10px black";
