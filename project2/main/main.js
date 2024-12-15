@@ -10,6 +10,7 @@ const slider_thumb = document.getElementById('slider_thumb');
 const slider_line = document.getElementById('slider_line');
 const counter = document.getElementById('counter');
 
+
 const world = Globe()
   (document.getElementById('chart'))
   .globeImageUrl('../assets/moonsurface.jpeg')
@@ -203,6 +204,8 @@ function rotateGlobe() {
 }
 
 rotateGlobe();
+
+
 
 //pause rotation on interaction
 const globeContainer = document.getElementById('chart');
