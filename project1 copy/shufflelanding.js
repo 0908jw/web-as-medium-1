@@ -1,58 +1,77 @@
-const DAMPING = 30; // Number of steps for shuffling
-const DELAY = 50;   // Delay between steps
+const DAMPING = 50;  // Number of steps to gradually restore text
+const DELAY = 100;   // Delay between each shuffle/restoration step
 
-// Shuffle the letters within a word
-function shuffleWord(word) {
+// Function to shuffle some letters within a word progressively
+function partialShuffle(word, progress) {
     const letters = word.split('');
-    for (let i = letters.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [letters[i], letters[j]] = [letters[j], letters[i]]; // Swap letters
+    const swapCount = Math.ceil(letters.length * (1 - progress));  // Gradual decrease in shuffling
+
+    for (let i = 0; i < swapCount; i++) {
+        const index1 = Math.floor(Math.random() * letters.length);
+        const index2 = Math.floor(Math.random() * letters.length);
+        [letters[index1], letters[index2]] = [letters[index2], letters[index1]];
     }
+
     return letters.join('');
 }
 
-// Animation delay
+// Animation delay function
 async function delay(n) {
     return new Promise(resolve => setTimeout(resolve, n));
 }
 
-// Animate function for text shuffling
-async function animate(el) {
-    const words = el.textContent.split(' '); // Split text into words
-    const originalWords = [...words]; // Keep original words for reset
+// Gradually restore the original word from shuffled version
+async function graduallyRestoreWord(el, originalWords) {
+    const currentWords = el.textContent.split(' ');
 
-    let animationActive = true;
+    for (let step = 0; step <= DAMPING; step++) {
+        const progress = step / DAMPING;  // Increase progress over time
 
-    const resetText = async () => {
-        animationActive = false;
-
-        // Gradually restore the original text
-        for (let i = 0; i < words.length; i++) {
-            const originalWord = originalWords[i];
-            for (let j = 0; j < DAMPING; j++) {
-                words[i] = shuffleWord(originalWord); // Shuffle the original word
-                el.textContent = words.join(' '); // Join words back to a string
-                await delay(DELAY);
-            }
+        for (let i = 0; i < originalWords.length; i++) {
+            currentWords[i] = partialShuffle(originalWords[i], progress);
         }
 
-        // Finally, restore the original text
-        for (let k = 0; k < originalWords.length; k++) {
-            el.textContent = originalWords.join(' ');
-            await delay(DELAY); // Small delay before each reset (optional)
+        el.textContent = currentWords.join(' '); // Update the text content gradually
+        await delay(DELAY);
+    }
+
+    el.textContent = originalWords.join(' ');  // Ensure full reset at the end
+}
+
+// Animate function for text shuffling
+async function animate(el) {
+    if (el.dataset.animating === "true") return; // Prevent multiple animations
+    el.dataset.animating = "true";
+
+    const words = el.textContent.split(' ');  // Split text into words
+    const originalWords = [...words];  // Store original words for restoring
+    let animationActive = true;
+
+    // Shuffle animation loop
+    const shuffleLoop = async () => {
+        let step = 0;
+
+        while (animationActive) {
+            const progress = Math.sin((step / DAMPING) * Math.PI); // Smooth easing effect
+
+            for (let i = 0; i < words.length; i++) {
+                words[i] = partialShuffle(words[i], progress);
+            }
+
+            el.textContent = words.join(' '); // Update the text content
+            step++;
+            await delay(DELAY);
         }
     };
 
-    el.addEventListener('mouseleave', resetText);
+    shuffleLoop();
 
-    // Shuffle animation loop
-    while (animationActive) {
-        for (let i = 0; i < words.length; i++) {
-            words[i] = shuffleWord(words[i]); // Shuffle each word
-        }
-        el.textContent = words.join(' '); // Update the text content
-        await delay(DELAY);
-    }
+    // Stop shuffling and restore text when mouse leaves
+    el.addEventListener('mouseleave', async () => {
+        animationActive = false;  // Stop the shuffling loop
+        await graduallyRestoreWord(el, originalWords);  // Restore original text
+        el.dataset.animating = "false";  // Allow animation to restart on hover
+    });
 }
 
 // Attach animation to headings
