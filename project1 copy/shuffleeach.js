@@ -91,3 +91,16 @@ popups.forEach(popup => {
         }, { once: true })
     });
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    const columns = document.querySelectorAll('.column');
+
+    columns.forEach(column => {
+        column.addEventListener('click', function() {
+            const link = column.getAttribute('data-link');
+            if (link) {
+                window.location.href = link;  // Redirect to the page
+            }
+        });
+    });
+});
