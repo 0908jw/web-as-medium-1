@@ -226,60 +226,48 @@ body {
   opacity: 0; 
   pointer-events: none; 
 }
-
 .custom-checkbox {
-    width: 13px;
-    height: 13px;
-    border: 1px dotted rgb(255, 255, 255);
-    margin-right: 10px;
-    background-color: transparent;
-    display: inline-block;
-    transition: background-color 0.3s ease;
-  }
-  
-  input[type="checkbox"]:checked + .custom-checkbox {
-    border-color: currentColor;
-  }  
+  width: 13px;
+  height: 13px;
+  border: 1px dotted rgb(255, 255, 255);
+  margin-right: 10px;
+  background-color: transparent;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
 
-  .custom-checkbox.teal {
-    background-color: transparent;
-  }
-  
-  .custom-checkbox.yellow {
-    background-color: transparent;
-  }
-  
-  .custom-checkbox.aquamarine {
-    background-color: transparent;
-  }
-  
-  .custom-checkbox blueviolet {
-    background-color: transparent;
-  }
-  
-  .custom-checkbox sienna {
-    background-color: transparent;
-  }
-  
-  input[type="checkbox"]:checked + .custom-checkbox.teal {
-    background-color: teal;
-  }
-  
-  input[type="checkbox"]:checked + .custom-checkbox.yellow {
-    background-color: yellow;
-  }
-  
-  input[type="checkbox"]:checked + .custom-checkbox.aquamarine {
-    background-color: aquamarine;
-  }
-  
-  input[type="checkbox"]:checked + .custom-checkbox.blueviolet {
-    background-color: blueviolet;
-  }
-  
-  input[type="checkbox"]:checked + .custom-checkbox.sienna {
-    background-color: sienna;
-  }
+input[type="checkbox"]:checked + .custom-checkbox {
+  border-color: currentColor;
+}  
+
+.custom-checkbox.teal,
+.custom-checkbox.yellow,
+.custom-checkbox.aquamarine,
+.custom-checkbox.blueviolet,
+.custom-checkbox.sienna {
+  background-color: transparent;
+}
+
+input[type="checkbox"]:checked + .custom-checkbox.teal {
+  background-color: teal;
+}
+
+input[type="checkbox"]:checked + .custom-checkbox.yellow {
+  background-color: yellow;
+}
+
+input[type="checkbox"]:checked + .custom-checkbox.aquamarine {
+  background-color: aquamarine;
+}
+
+input[type="checkbox"]:checked + .custom-checkbox.blueviolet {
+  background-color: blueviolet;
+}
+
+input[type="checkbox"]:checked + .custom-checkbox.sienna {
+  background-color: sienna;
+}
+
   
   .year-context {
     display: none;

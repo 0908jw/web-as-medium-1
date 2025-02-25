@@ -274,3 +274,78 @@ document.addEventListener('DOMContentLoaded', () => {
       overlay.classList.add('hidden');
   });
 });
+
+
+//---------------toggle function-----------------
+let activeFilters = {
+  teal: document.getElementById('teal-checkbox').checked,
+  yellow: document.getElementById('yellow-checkbox').checked,
+  aquamarine: document.getElementById('aquamarine-checkbox').checked,
+  blueviolet: document.getElementById('blueviolet-checkbox').checked,
+  sienna: document.getElementById('sienna-checkbox').checked
+};
+
+world.objectThreeObject((d) => {
+  const geometry = new THREE.BoxGeometry(
+    SAT_SIZE * world.getGlobeRadius() / EARTH_RADIUS_KM / 2,
+    SAT_SIZE * world.getGlobeRadius() / EARTH_RADIUS_KM / 2,
+    SAT_SIZE * world.getGlobeRadius() / EARTH_RADIUS_KM / 2
+  );
+
+  if (!d.color) {
+    const randomCategory = Math.random();
+    if (randomCategory < 0.05) d.color = 'teal';
+    else if (randomCategory < 0.25) d.color = 'yellow';
+    else if (randomCategory < 0.95) d.color = 'aquamarine';
+    else if (randomCategory < 0.96) d.color = 'blueviolet';
+    else d.color = 'sienna';
+  }
+
+  const shouldGlow = Math.random() > 0.5;
+  const material = new THREE.MeshStandardMaterial({
+    color: d.color,
+    emissive: shouldGlow ? d.color : 'black',
+    emissiveIntensity: shouldGlow ? Math.random() * 1.5 + 0.5 : 0,
+    transparent: true,
+    opacity: 0.7
+  });
+
+  const mesh = new THREE.Mesh(geometry, material);
+
+  const randomScale = Math.random() * 2.0 + 0.5;
+  mesh.scale.set(randomScale, randomScale, randomScale);
+
+  return mesh;
+});
+
+
+function updateFilteredSatellites() {
+  if (!satData || satData.length === 0) return;
+
+
+  const sliderValue = parseInt(slider_input.value);
+  const minSatellites = 2;
+  const maxSatellites = satData.length;
+  const numSatellites = getNonLinearScaledValue(sliderValue, minSatellites, maxSatellites);
+
+  const satellitesByYear = satData.slice(0, numSatellites); 
+
+  const filteredSatellites = satellitesByYear.filter(d => activeFilters[d.color]);
+
+  world.objectsData(filteredSatellites);
+}
+
+function toggleColorFilter(color, checkboxId) {
+  activeFilters[color] = document.getElementById(checkboxId).checked;
+  updateFilteredSatellites();
+}
+
+document.getElementById('teal-checkbox').addEventListener('change', () => toggleColorFilter('teal', 'teal-checkbox'));
+document.getElementById('yellow-checkbox').addEventListener('change', () => toggleColorFilter('yellow', 'yellow-checkbox'));
+document.getElementById('aquamarine-checkbox').addEventListener('change', () => toggleColorFilter('aquamarine', 'aquamarine-checkbox'));
+document.getElementById('blueviolet-checkbox').addEventListener('change', () => toggleColorFilter('blueviolet', 'blueviolet-checkbox'));
+document.getElementById('sienna-checkbox').addEventListener('change', () => toggleColorFilter('sienna', 'sienna-checkbox'));
+
+slider_input.addEventListener('input', updateFilteredSatellites);
+
+updateFilteredSatellites();
