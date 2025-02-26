@@ -68,22 +68,23 @@
 /*------------------------------*/
   
 @font-face {
-  font-family: 'Pano Regular';
-  src: url('../fonts/HW\ Pano\ Regular.ttf') format('truetype'); 
+  font-family: 'fs dot';
+  src: url('../fonts/fs-dot-serif.ttf') format('truetype');
 }
+
 
 .text{
   position: absolute;
   top: 50%; 
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 40px;
+  font-size: 60px;
   color: white;
   opacity: 0;
   visibility: hidden; 
   transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
   z-index: 10;
-  font-family: 'Pano Regular';
+  font-family: 'fs dot';
   }
 
   .text.show{
@@ -91,21 +92,16 @@
     visibility: visible;
   }
 
-  @font-face {
-    font-family: 'fs dot';
-    src: url('../fonts/fs-dot-serif.ttf') format('truetype');
-  }
-
   .reveal-button {
     position: absolute;
-    top: 60%;
+    top: 63%;
     left: 50%; 
     transform: translate(-50%, -50%);
     padding: 7px 14px;
     background-color: transparent;
     color: rgb(255, 255, 255); 
     border: 1px dotted white;
-    font-size: 1.5em;
+    font-size: 1.3em;
     cursor: pointer;
     border-radius:6px;
     opacity: 0; 
